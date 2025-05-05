@@ -1,8 +1,8 @@
 resource "aws_dynamodb_table" "this" {
-  name           = var.table_name
-  billing_mode   = var.billing_mode
-  hash_key       = var.hash_key
-  range_key = var.range_key == "" ? null : var.range_key
+  name         = var.table_name
+  billing_mode = var.billing_mode
+  hash_key     = var.hash_key
+  range_key    = var.range_key == "" ? null : var.range_key
 
   attribute {
     name = var.hash_key
@@ -30,8 +30,8 @@ resource "aws_dynamodb_table" "this" {
     }
   }
 
-  read_capacity  = var.read_capacity
-  write_capacity = var.write_capacity
+  read_capacity  = var.billing_mode == "PAY_PER_REQUEST" ? null : var.read_capacity
+  write_capacity = var.billing_mode == "PAY_PER_REQUEST" ? null : var.write_capacity
 
   tags = var.tags
 }
