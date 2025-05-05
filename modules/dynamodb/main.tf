@@ -2,11 +2,7 @@ resource "aws_dynamodb_table" "this" {
   name           = var.table_name
   billing_mode   = var.billing_mode
   hash_key       = var.hash_key
-
-  dynamic "range_key" {
-    for_each = var.range_key == "" ? [] : [var.range_key]
-    content { range_key = range_key.value }
-  }
+  range_key = var.range_key == "" ? null : var.range_key
 
   attribute {
     name = var.hash_key
