@@ -7,8 +7,8 @@ on:
   pull_request:
 
 permissions:
-  id-token: write    # Needed for OIDC token
-  contents: read     # To checkout code
+  id-token: write # Needed for OIDC token
+  contents: read # To checkout code
 
 jobs:
   terraform:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AWS_REGION: us-east-1  
+      AWS_REGION: us-east-1
 
     steps:
       - name: Checkout Repository
@@ -27,6 +27,9 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
+
+      - name: Change Directory to Environment
+        run: cd environments/development
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
