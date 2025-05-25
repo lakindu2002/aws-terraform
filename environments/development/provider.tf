@@ -5,12 +5,14 @@ terraform {
       version = "~> 4.16"
     }
   }
-
+  backend "s3" {
+    bucket = "lakindus-terraform-state-storage"
+    key    = "development/terraform.tfstate"
+    region = "us-east-1"
+  }
   required_version = ">= 1.2.0"
 }
 
 provider "aws" {
-  region     = "ap-southeast-1"
-  access_key = var.aws_access_key
-  secret_key = var.aws_secret_key
+  region = "us-east-1"
 }
