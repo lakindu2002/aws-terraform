@@ -1,4 +1,4 @@
-name: Terraform Deployment with AWS OIDC
+name: Terraform Destory with AWS OIDC
 
 # no trigger, only manual execution
 on:
