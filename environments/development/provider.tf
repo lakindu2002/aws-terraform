@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "lakindus-terraform-state-storage"
+    bucket = "lakindus-terraform-state"
     key    = "development/terraform.tfstate"
     region = "us-east-1"
   }
